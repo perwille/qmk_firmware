@@ -1,7 +1,8 @@
 // this is the style you want to emulate.
 // This is the canonical layout file for the Quantum project. If you want to add another keyboard,
 
-#include "atreus.h"
+
+#include QMK_KEYBOARD_H
 #include "keymap_dvorak.h"
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -15,7 +16,7 @@
 #define _DVLW 5
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_QW] = LAYOUT( /* soft dvorak */
+[_QW] = LAYOUT_pcb_up( /* soft dvorak */
   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P    ,
   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                 KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN ,
   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH ,
@@ -26,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *  [       ]      (     )    &            ||           `     1     2     3    \
  * lw     insert super shift  sp ctrl/bksp || alt/tab enter   fn    .     0    =
  */
-[_RS] = LAYOUT( /* [> RAISE <] */
+[_RS] = LAYOUT_pcb_up( /* [> RAISE <] */
   KC_EXLM, KC_AT,   KC_UP,   DV_LCBR, DV_RCBR,                               KC_PGUP, KC_7,    KC_8,   KC_9, DV_ASTR ,
   KC_HASH, KC_LEFT, KC_DOWN, KC_RGHT, KC_DLR,                                KC_PGDN, KC_4,    KC_5,   KC_6, DV_PLUS ,
   DV_LBRC, DV_RBRC, KC_LPRN, KC_RPRN, KC_AMPR,                               KC_GRV,  KC_1,    KC_2,   KC_3, KC_BSLS ,
@@ -37,47 +38,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *  play  volup mute       reset       ||     dvorak  F1    F2    F3   F12
  *  next  voldn  super shift bksp ctrl || alt space   L0  prtsc scroll pause
  */
-[_LW] = LAYOUT( /* [> LOWER <] */
+[_LW] = LAYOUT_pcb_up( /* [> LOWER <] */
   KC_INS,  KC_HOME, KC_UP,   KC_END,  KC_PGUP,                               KC_UP,   KC_F7,   KC_F8,   KC_F9,   KC_F10  ,
-  KC_DELT, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                               KC_DOWN, KC_F4,   KC_F5,   KC_F6,   KC_F11  ,
-  KC_MPLY, KC_VOLU, KC_MUTE, KC_NO,   RESET,                                 TG(_DV), KC_F1,   KC_F2,   KC_F3,   KC_F12  ,
-  KC_MNXT, KC_VOLD, KC_LGUI, KC_LSFT, KC_SPC, CTL_T(KC_BSPC), ALT_T(KC_TAB), KC_ENT,  TO(_QW), KC_PSCR, KC_SLCK, KC_PAUS ),
+  KC_DEL,  KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                               KC_DOWN, KC_F4,   KC_F5,   KC_F6,   KC_F11  ,
+  KC_MPLY, KC_VOLU, KC_MUTE, KC_NO,   QK_BOOT,                                 TG(_DV), KC_F1,   KC_F2,   KC_F3,   KC_F12  ,
+  KC_MNXT, KC_VOLD, KC_LGUI, KC_LSFT, KC_SPC, CTL_T(KC_BSPC), ALT_T(KC_TAB), KC_ENT,  TO(_QW), KC_PSCR, KC_SCRL, KC_PAUS ),
 
-[_DV] = LAYOUT( /* dvorak */
+[_DV] = LAYOUT_pcb_up( /* dvorak */
     KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                                  KC_F,    KC_G,      KC_C,    KC_R,    KC_L   ,
     KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                                  KC_D,    KC_H,      KC_T,    KC_N,    KC_S   ,
     KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,                                  KC_B,    KC_M,      KC_W,    KC_V,    KC_Z   ,
     KC_ESC,  KC_TAB, KC_LGUI,  KC_LSFT, KC_SPC, CTL_T(KC_BSPC), ALT_T(KC_TAB), KC_ENT,  MO(_DVRS), KC_MINS, KC_SLSH, KC_ENT ),
 
-[_DVRS] = LAYOUT( /* [> RAISE <] */
+[_DVRS] = LAYOUT_pcb_up( /* [> RAISE <] */
     KC_EXLM,   KC_AT,   KC_UP,   KC_LCBR, KC_RCBR,                               KC_PGUP, KC_7,    KC_8,   KC_9, KC_ASTR ,
     KC_HASH,   KC_LEFT, KC_DOWN, KC_RGHT, KC_DLR,                                KC_PGDN, KC_4,    KC_5,   KC_6, KC_PLUS ,
     KC_LBRC,   KC_RBRC, KC_LPRN, KC_RPRN, KC_AMPR,                               KC_GRV,  KC_1,    KC_2,   KC_3, KC_BSLS ,
     TG(_DVLW), KC_INS,  KC_LGUI, KC_LSFT, KC_SPC, CTL_T(KC_BSPC), ALT_T(KC_TAB), KC_ENT,  KC_TRNS, KC_DOT, KC_0, KC_EQL  ),
 
-[_DVLW] = LAYOUT( /* [> LOWER <] */
+[_DVLW] = LAYOUT_pcb_up( /* [> LOWER <] */
     KC_INS,  KC_HOME, KC_UP,   KC_END,  KC_PGUP,                               KC_UP,   KC_F7,   KC_F8,   KC_F9,   KC_F10  ,
-    KC_DELT, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                               KC_DOWN, KC_F4,   KC_F5,   KC_F6,   KC_F11  ,
-    KC_MPLY, KC_VOLU, KC_MUTE, KC_NO,   RESET,                                 TO(_QW), KC_F1,   KC_F2,   KC_F3,   KC_F12  ,
-    KC_MNXT, KC_VOLD, KC_LGUI, KC_LSFT, KC_SPC, CTL_T(KC_BSPC), ALT_T(KC_TAB), KC_SPC,  TO(_DV), KC_PSCR, KC_SLCK, KC_PAUS )
+    KC_DEL,  KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                               KC_DOWN, KC_F4,   KC_F5,   KC_F6,   KC_F11  ,
+    KC_MPLY, KC_VOLU, KC_MUTE, KC_NO,   QK_BOOT,                                 TO(_QW), KC_F1,   KC_F2,   KC_F3,   KC_F12  ,
+    KC_MNXT, KC_VOLD, KC_LGUI, KC_LSFT, KC_SPC, CTL_T(KC_BSPC), ALT_T(KC_TAB), KC_SPC,  TO(_DV), KC_PSCR, KC_SCRL, KC_PAUS )
 
-};
-
-const uint16_t PROGMEM fn_actions[] = {
-
-};
-
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-  // MACRODOWN only works in this function
-      switch(id) {
-        case 0:
-          if (record->event.pressed) {
-            register_code(KC_RSFT);
-          } else {
-            unregister_code(KC_RSFT);
-          }
-        break;
-      }
-    return MACRO_NONE;
 };
